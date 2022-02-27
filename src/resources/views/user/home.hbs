@@ -1,0 +1,259 @@
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="/front-end/img/shop01.png" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>LAPTOP<br></h3>
+								<a href="/lap-top" class="cta-btn">Xem ngay <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="/front-end/img/anh-11.jpg" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>ĐIỆN THOẠI<br></h3>
+								<a href="/dien-thoai" class="cta-btn">Xem ngay <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+
+					<!-- shop -->
+					<div class="col-md-4 col-xs-6">
+						<div class="shop">
+							<div class="shop-img">
+								<img src="/front-end/img/shop03.png" alt="">
+							</div>
+							<div class="shop-body">
+								<h3>PHỤ KIỆN<br></h3>
+								<a href="/phu-kien" class="cta-btn">Xem ngay <i class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+					</div>
+					<!-- /shop -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Sản phẩm mới</h3>
+							<div class="section-nav">
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										<!-- product -->
+										{{#each product}}
+										<div class="product">
+											<div class="product-img">
+												<img src="{{this.hinhanh}}" alt="">
+												<div class="product-label">
+													{{!-- <span class="sale">-30%</span> --}}
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category"></p>
+												<h3 class="product-name"><a href="/lap-top/{{this.slugsp}}">{{this.tensp}}</a></h3>
+												<h4 class="product-price">{{number this.giaban}} đ<del class="product-old-price">{{number this.giagoc}} đ</del></h4>
+												<div class="product-rating">
+												</div>
+											</div>
+										</div>
+										{{/each}}
+										<!-- /product -->
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- HOT DEAL SECTION -->
+		<div id="hot-deal" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="hot-deal">
+							<ul class="hot-deal-countdown">
+								<li>
+									<div>
+										<h3 class="days"></h3>
+										<span>Ngày</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3 class="hours"></h3>
+										<span>Giờ</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3 class="minutes"></h3>
+										<span>Phút</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3 class="seconds"></h3>
+										<span>Giây</span>
+									</div>
+								</li>
+							</ul>
+							<h2 class="text-uppercase">Siêu ưu đãi khủng</h2>
+							<p>Giảm giá sản phẩm lên đến 50%</p>
+							<a class="primary-btn cta-btn" href="#">Mua Ngay</a>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /HOT DEAL SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Sản phẩm bán chạy</h3>
+							<div class="section-nav">
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab2" class="tab-pane fade in active">
+									<div class="products-slick" data-nav="#slick-nav-2">
+										{{#each dt}}
+										<div class="product">
+											<div class="product-img">
+												<img src="{{this.hinhanh}}" alt="">
+											</div>
+											<div class="product-body">
+												<p class="product-category"></p>
+												<h3 class="product-name"><a href="/dien-thoai/{{this.slugsp}}">{{this.tensp}}</a></h3>
+												<h4 class="product-price">{{number this.giaban}} đ<del class="product-old-price">{{number this.giagoc}} đ</del></h4>			
+											</div>
+										</div>
+										{{/each}}
+										<!-- /product -->
+									</div>
+									<div id="slick-nav-2" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- /Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+	<script>
+	const countDownClock = (number = 100, format = 'seconds') => {
+  
+  	const d = document;
+  	const daysElement = d.querySelector('.days');
+  	const hoursElement = d.querySelector('.hours');
+  	const minutesElement = d.querySelector('.minutes');
+  	const secondsElement = d.querySelector('.seconds');
+  	let countdown;
+  	convertFormat(format);
+  
+  
+  	function convertFormat(format) {
+    switch(format) {
+      case 'seconds':
+        return timer(number);
+      case 'minutes':
+        return timer(number * 60);
+        case 'hours':
+        return timer(number * 60 * 60);
+      case 'days':
+        return timer(number * 60 * 60 * 24);             
+    }
+  	}
+
+  	function timer(seconds) {
+    const now = Date.now();
+    const then = now + seconds * 1000;
+
+    countdown = setInterval(() => {
+      const secondsLeft = Math.round((then - Date.now()) / 1000);
+
+      if(secondsLeft <= 0) {
+        clearInterval(countdown);
+        return;
+      };
+
+      displayTimeLeft(secondsLeft);
+
+    },1000);
+  }
+
+  	function displayTimeLeft(seconds) {
+    	daysElement.textContent = Math.floor(seconds / 86400);
+    	hoursElement.textContent = Math.floor((seconds % 86400) / 3600);
+    	minutesElement.textContent = Math.floor((seconds % 86400) % 3600 / 60);
+    	secondsElement.textContent = seconds % 60 < 10 ? `0${seconds % 60}` : seconds % 60;
+  }
+}
+	countDownClock(20, 'days');
+	</script>

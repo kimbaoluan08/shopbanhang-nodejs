@@ -1,0 +1,108 @@
+<style>
+  .vertical-menu { width: 200px;} .vertical-menu a { background-color: #eee;
+  border: 1px solid #000; color: black; display: block; padding: 12px;
+  text-decoration: none; } .vertical-menu a:hover { background-color: #ccc; }
+  .vertical-menu a.active { background-color: #04AA6D; color: white; }
+</style>
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#">Đơn hàng của tôi</a></li>
+          <li class="active">Chi tiết đơn hàng</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- ASIDE -->
+      {{! <div id="aside" class="col-md-2">
+      </div> }}
+      <!-- /ASIDE -->
+
+      <!-- STORE -->
+      <div class="col-md-3">
+        <div class="vertical-menu">
+          <a href="/user/info">Thông tin cá nhân</a>
+          <a href="/user/change-pass">Đổi mật khẩu</a>
+          <a href="/user/don-hang">Đơn hàng</a>
+        </div>
+      </div>
+      <div class="col-md-9" style="font-size: 16px">
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr style="text-align: center; font-weight: bold">
+              <td scope="col">Ảnh sản phẩm</td>
+              <td scope="col">Tên sản phẩm</td>
+              <td scope="col">Số lượng</td>
+              <td scope="col">Giá tiền</td>
+            </tr>
+          </thead>
+          {{#each order}}
+          <tbody>
+            {{#each orders}}
+            <tr>
+              <td><img src="{{this.hinhanh}}" alt="" width="150px"></td>
+              <td>{{this.tensp}}</td>
+              <td>{{this.soluong}}</td>
+              <td>{{number this.giatien}} VNĐ</td>
+            </tr>
+           {{/each}}
+            <tr>
+              <th scope="row">Tổng thanh toán</th>
+              <td colspan="3">{{number this.tongtien}}  VNĐ</td>
+            </tr>
+            <tr>
+              <th scope="row">Ngày đặt hàng</th>
+              <td colspan="3">{{dateFormat this.createdAt "dddd, DD-MM-YYYY HH:mm"}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Ngày duyệt hàng</th>
+              <td colspan="3">{{dateFormat this.upadateddAt "dddd, DD-MM-YYYY HH:mm"}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Hình thức thanh toán</th>
+              <td colspan="3">{{this.hinhthuctt}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Trạng thái</th>
+              <td colspan="2">
+                   {{#ifCond this.tinhtrang 1}}
+                    <span style="color: rgb(86, 86, 209);">Đang xác nhận</span>
+                  {{/ifCond}}
+                  {{#ifCond this.tinhtrang 2}}
+                    <span style="color: rgb(48, 167, 48);">Đã xác nhận</span>
+                  {{/ifCond}}
+                  {{#ifCond this.tinhtrang 5}}
+                    <span style="color: red;">Đã huỷ</span>
+                  {{/ifCond}}
+              </td>
+              <td >
+                  {{#ifCond this.tinhtrang 1}}
+                    <a style="font-weight: bold" href="/user/huy-don-hang/{{this.madh}}">Huỷ đơn hàng</a>
+                  {{/ifCond}}
+              </td>
+            </tr>
+          </tbody>
+          {{/each}}
+        </table>
+        <div style="margin-bottom: 200px"></div>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>

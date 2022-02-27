@@ -1,0 +1,116 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="col">
+      <div class="card">
+        <div class="card-title text-center pt-5">
+          <h4>DANH SÁCH MÃ GIẢM GIÁ</h4>
+
+        </div>
+        <div class="card-body"><a href="/admin/add-coupon"><button
+              type="button"
+              class="btn btn-primary"
+            >Thêm mã giảm</button></a></div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered text-center"
+              style="color: #4d4d4d"
+            >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tên mã</th>
+                  <th>Nội dung</th>
+                  <th>Hình thức</th>
+                  <th>Mức giảm</th>
+                  <th>Tình trạng</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each coupon}}
+                  <tr>
+                    <th scope="row">{{incremented @index}}</th>
+                    <td>{{this.tenma}}</td>
+                    <td>
+                     {{this.mota}}
+                    </td>
+                    <td>
+                      {{#ifCond this.hinhthuc 1}}
+                      Giảm giá theo tiền
+                      {{/ifCond}}
+                      {{#ifCond this.hinhthuc 2}}
+                      Giảm giá theo %
+                      {{/ifCond}}
+                      </td>
+                    <td>
+                      {{this.mucgiam}}
+                    </td>
+                    <td>
+                      {{#ifCond this.trangthai 1}}
+                        <span
+                          style="color: green; font-weight:bold;"
+                        >Đang sử dụng</span>
+                      {{else}}
+                        <span style="color: red; " >Hết hạn</span>
+                      {{/ifCond}}
+                    </td>
+                    <td><a
+                        href="/admin/edit-coupon/{{this._id}}"
+                        class="btn btn-xs btn-warning"
+                      >
+                        <i alt="Edit" class="fa fa-pencil"> Thay đổi</i></a>
+                      <form
+                        class="delete"
+                        action="/admin/del-coupon/{{this._id}}?_method=DELETE"
+                        method="POST"
+                        style="display: inline;"
+                      >
+                        <button
+                          type="submit"
+                          class="btn btn-xs btn-danger"
+                          name="delete-contact"
+                        >
+                          <i alt="Delete" class="fa fa-trash"> Xoá</i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            {{! Alert }}
+            <div id="delete-confirm" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Thông báo</h4>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                    >&times;</button>
+                  </div>
+                  <div class="modal-body">Bạn có chắc muốn xoá nhân viên này?</div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      data-dismiss="modal"
+                      class="btn btn-danger"
+                      id="delete"
+                    >Xoá</button>
+                    <button
+                      type="button"
+                      data-dismiss="modal"
+                      class="btn btn-default"
+                    >Huỷ bỏ</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

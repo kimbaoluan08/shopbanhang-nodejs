@@ -1,0 +1,55 @@
+<style>
+  .vertical-menu { width: 200px;} .vertical-menu a { background-color: #eee;
+  border: 1px solid #000; color: black; display: block; padding: 12px;
+  text-decoration: none; } .vertical-menu a:hover { background-color: #ccc; }
+  .vertical-menu a.active { background-color: #04AA6D; color: white; }
+</style>
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Trang chủ</a></li>
+          <li class="active">Đơn hàng của tôi</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- STORE -->
+      <div class="col-md-3">
+        <div class="vertical-menu">
+          <a href="/user/info">Thông tin cá nhân</a>
+          <a href="/user/change-pass">Đổi mật khẩu</a>
+          <a href="/user/don-hang">Đơn hàng</a>
+        </div>
+      </div>
+      <div class="col-md-9" style="font-size: 16px">
+        <h3>Thông tin cá nhân</h3>
+        <div class="card" style="width: 50rem;">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Họ tên: {{user.hoten}}</li>
+            <li class="list-group-item">Địa chỉ: </li>
+            <li class="list-group-item">Giới tính: {{user.gioitinh}}</li>
+            <li class="list-group-item">Số điện thoại: {{user.sdt}}</li>
+            <li class="list-group-item">email: {{user.email}}</li>
+          </ul>
+        </div>
+        <div style="margin-bottom: 200px"></div>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>

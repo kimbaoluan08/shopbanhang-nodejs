@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>{{title}}</title>
+
+		<link rel="icon" type="image/png" sizes="16x16" href="/back-end/images/favicon.png">
+
+		<!-- Google font -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+		<!-- Bootstrap -->
+		<link type="text/css" rel="stylesheet" href="/front-end/css/bootstrap.min.css"/>
+
+		<!-- Slick -->
+		<link type="text/css" rel="stylesheet" href="/front-end/css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="/front-end/css/slick-theme.css"/>
+
+		<!-- nouislider -->
+		<link type="text/css" rel="stylesheet" href="/front-end/css/nouislider.min.css"/>
+
+		<!-- Font Awesome Icon -->
+		<link rel="stylesheet" href="/front-end/css/font-awesome.min.css">
+
+		<!-- Custom stlylesheet -->
+		<link type="text/css" rel="stylesheet" href="/front-end/css/style.css"/>
+
+		 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<style>
+			.effect {
+  				height: 200px; 
+  				overflow: hidden; 
+			}
+
+			.effect img {
+ 				 transition: transform .5s ease;
+			}
+
+			.effect:hover img {
+  				transform: scale(1.15);
+			}
+
+			.effect_1 {
+  				height: 270px; 
+  				overflow: hidden; 
+			}
+
+			.effect_1 img {
+ 				 transition: transform .5s ease;
+			}
+
+			.effect_1:hover img {
+  				transform: scale(1.1);
+			}
+		</style>
+
+    </head>
+	<body>
+
+		{{> header-user}}
+
+            {{{body}}}
+
+        {{> footer-user}}
+
+		<!-- jQuery Plugins -->
+		<script src="/front-end/js/jquery.min.js"></script>
+		<script src="/front-end/js/bootstrap.min.js"></script>
+		<script src="/front-end/js/slick.min.js"></script>
+		<script src="/front-end/js/nouislider.min.js"></script>
+		<script src="/front-end/js/jquery.zoom.min.js"></script>
+		<script src="/front-end/js/main.js"></script>
+	<script>
+	var code = document.getElementById("matkhau");
+
+	var strengthbar = document.getElementById("meter");
+	var display = document.getElementsByClassName("textbox")[0];
+
+	code.addEventListener("keyup", function() {
+  		checkpassword(code.value);
+	});
+
+
+	function checkpassword(password) {
+  	var strength = 0;
+  	if (password.match(/[a-z]+/)) {
+    	strength += 1;
+  	}
+  	if (password.match(/[A-Z]+/)) {
+    	strength += 1;
+  	}
+  	if (password.match(/[0-9]+/)) {
+    	strength += 1;
+  	}
+  	if (password.match(/[$@#&!]+/)) {
+    	strength += 1;
+
+  	}
+
+  	switch (strength) {
+    	case 0:
+      	strengthbar.value = 0;
+	  	display.innerHTML = "";
+      	break;
+
+    	case 1:
+      	strengthbar.value = 25;
+	  	display.innerHTML = "Mật khẩu kém";
+      	break;
+
+    	case 2:
+      	strengthbar.value = 50;
+	   	display.innerHTML = "Mật khẩu bình thường";
+      	break;
+
+    	case 3:
+      	strengthbar.value = 75;
+	  	display.innerHTML = "Mật khẩu mạnh";
+      	break;
+
+    	case 4:
+      	strengthbar.value = 100;
+	  	display.innerHTML = "Mật khẩu rất mạnh";
+      	break;
+  	}
+	}
+	</script>
+	{{!-- search --}}
+	<script>
+
+		function sendData(e){
+			const searchResult = document.getElementById('searchResult');
+			let match = e.value.match(/^[a-zA-Z]*/);
+			let match2 = e.value.match(/\s*/);
+			if(match2[0] === e.value){
+				searchResult.innerHTML = '';
+				return;
+			}
+			if(match[0] === e.value){
+				fetch('getProducts', {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({payload: e.value})
+			}).then(res => res.json()).then(data => {
+				let payload = data.payload;
+				searchResult.innerHTML = '';
+				if(payload.length < 1){
+					searchResult.innerHTML = '<p>Không có kết quả</p>';
+					return;
+				}
+				payload.forEach((item, index)=> {
+					if(index > 0) searchResult.innerHTML +='<div></div>';
+					if (item.maloai === 1){
+						searchResult.innerHTML += `<a href="/lap-top/${item.slugsp}"><img src="${item.hinhanh}" alt=""><span class='text'>${item.tensp}</span></a>`;
+					} else if (item.maloai === 2){
+						searchResult.innerHTML += `<a href="/dien-thoai/${item.slugsp}"><img src="${item.hinhanh}" alt=""><span class='text'>${item.tensp}</span></a>`;
+					} else {
+						searchResult.innerHTML += `<a href="/phu-kien/${item.slugsp}"><img src="${item.hinhanh}" alt=""><span class='text'>${item.tensp}</span></a>`;
+					}
+					
+				});
+			});
+			return;	
+			}
+			searchResult.innerHTML = '';
+		}
+
+	</script>
+	</body>
+</html>

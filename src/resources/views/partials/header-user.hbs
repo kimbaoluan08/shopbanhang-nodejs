@@ -1,0 +1,147 @@
+<!-- HEADER -->
+<style>
+  #searchResult {
+    width: 520px;
+    margin: 0 10px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    border: 1px solid black;
+  }
+  #searchResult img {
+    width: 100px;
+    padding: 5px 0;
+  }
+  #searchResult .text {
+    padding-left: 10px;
+  }
+</style>
+<header>
+  <!-- TOP HEADER -->
+  <div id="top-header">
+    <div class="container">
+      <ul class="header-links pull-left">
+        <li><a href="#"><i class="fa fa-phone"></i> +0347-444-190</a></li>
+        <li><a href="#"><i class="fa fa-envelope-o"></i>
+            philaden098@email.com</a></li>
+        <li><a href="#"><i class="fa fa-map-marker"></i>
+            274B/8 NVL, An Khánh, Ninh Kiều, Cần Thơ </a></li>
+      </ul>
+      <ul class="header-links pull-right">
+        {{#if session.user}}
+        <li><a href="/user/don-hang"><i class="fa fa-user"></i> Thông tin cá nhân</a></li>
+        <li><a href="/user/logout"><i class="fa fa-power-off"></i> Đăng xuất</a></li>
+        {{else}}
+        <li><a href="/user/login"><i class="fa fa-user-o"></i> Đăng nhập</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+  <!-- /TOP HEADER -->
+  
+  <!-- MAIN HEADER -->
+  <div id="header">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <!-- LOGO -->
+        <div class="col-md-3">
+          <div class="header-logo">
+            <a href="#" class="logo" >
+              <h2 style="color: white; line-height: 2; font-size: 34px">LUANTSHOP	</h2>
+            </a>
+          </div>
+        </div>
+        <!-- /LOGO -->
+        
+        <!-- SEARCH BAR -->
+        <div class="col-md-6">
+          <div class="header-search" style="padding-left: 7px;">
+            <form>
+              <input type="text" class="input input-select" id="search-box" onkeyup="sendData(this)" placeholder="Nhập sản phẩm cần tìm">
+              <button class="search-btn">Tìm kiếm</button>
+              <div id="searchResult">
+                
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /SEARCH BAR -->
+
+        <!-- ACCOUNT -->
+        <div class="col-md-3 clearfix">
+          <div class="header-ctn">
+            <!-- Wishlist -->
+            <div>
+              <a href="#">
+                <i class="fa fa-heart-o"></i>
+                <span>Yêu thích</span>
+                <div class="qty">0</div>
+              </a>
+            </div>
+            <!-- /Wishlist -->
+
+            <!-- Cart -->
+            <div class="dropdown">
+              <a
+                href="/gio-hang"
+                class="dropdown-toggle"
+                aria-expanded="true"
+              >
+                <i class="fa fa-shopping-cart"></i>
+                <span>Giỏ hàng</span>
+                <div class="qty">
+                  {{#if session.cart.totalQty}}
+                    {{session.cart.totalQty}}
+                  {{else}}
+                    0
+                  {{/if}}
+                </div>
+              </a>
+            </div>
+            <!-- /Cart -->
+
+            <!-- Menu Toogle -->
+            <div class="menu-toggle">
+              <a href="#">
+                <i class="fa fa-bars"></i>
+                <span>Menu</span>
+              </a>
+            </div>
+            <!-- /Menu Toogle -->
+          </div>
+        </div>
+        <!-- /ACCOUNT -->
+      </div>
+      <!-- row -->
+    </div>
+    <!-- container -->
+  </div>
+  <!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->
+<!-- NAVIGATION -->
+<nav id="navigation">
+  <!-- container -->
+  <div class="container">
+    <!-- responsive-nav -->
+    <div id="responsive-nav">
+      <!-- NAV -->
+      <ul class="main-nav nav navbar-nav">
+        <li><a href="/">TRANG CHỦ</a></li>
+        <li class="{{laptop}}"><a href="/lap-top">LAPTOP</a></li>
+        <li class="{{dt}}"><a href="/dien-thoai">ĐIỆN THOẠI</a></li>
+        <li class="{{pk}}"><a href="/phu-kien">PHỤ KIỆN</a></li>
+        <li><a href="#">KHUYẾN MÃI</a></li>
+        <li><a href="#">TIN TỨC</a></li>
+        <li><a href="/contact">LIÊN HỆ</a></li>
+      </ul>
+      <!-- /NAV -->
+    </div>
+    <!-- /responsive-nav -->
+  </div>
+  <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->

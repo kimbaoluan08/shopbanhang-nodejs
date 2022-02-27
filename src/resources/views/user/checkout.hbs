@@ -1,0 +1,208 @@
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Trang chủ</a></li>
+          <li><a href="#">Giỏ hàng</a></li>
+          <li class="active">Thanh toán</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+
+{{! section }}
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <form action="/user/luu-thanh-toan" method="post">
+      <div class="row">
+
+        <div class="col-md-7" style="color: black; font-weight:500">
+          <!-- Billing Details -->
+          <div class="billing-details">
+            <div class="section-title">
+              <h3 class="title">THÔNG TIN ĐƠN HÀNG</h3>
+            </div>
+            <div class="form-group">
+              <input
+                class="input"
+                type="text"
+                name="hoten"
+                placeholder="Họ tên"
+                value="{{user.hoten}}"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <select class="form-control" id="exampleFormControlSelect1" name="diachi">
+                <option disabled selected>Chọn địa chỉ giao hàng</option>
+                {{#each address}}
+                  <option value="{{this.madc}}">{{this.diachi}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group">
+              <input
+                class="input"
+                type="text"
+                name="sdt"
+                value="{{user.sdt}}"
+                placeholder="Số điện thoại"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                class="input"
+                type="email"
+                name="email"
+                value="{{user.email}}"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <!-- Order notes -->
+            <div class="order-notes">
+              <textarea
+                class="input"
+                placeholder="Ghi chú"
+                name="ghichu"
+              ></textarea>
+            </div>
+            <!-- /Order notes -->
+          </div>
+          <!-- /Billing Details -->
+        </div>
+
+        <!-- Order Details -->
+        <div class="col-md-5 order-details">
+          <div class="section-title text-center">
+            <h3 class="title">SẢN PHẨM ĐÃ ĐẶT</h3>
+          </div>
+          <div class="order-summary">
+            <div class="order-col">
+              <div><strong>Tên sản phẩm</strong></div>
+              <div><strong>Thành tiền</strong></div>
+            </div>
+            <div class="order-products">
+              {{#each products}}
+                <div class="order-col">
+                  <div style="font-size: 12px">{{this.qty}}x
+                    {{this.item.tensp}}</div>
+                  <div>{{number this.price}} đ</div>
+                </div>
+              {{/each}}
+            </div>
+            <div class="order-col">
+              <div>Shiping</div>
+              <div><strong>FREE</strong></div>
+            </div>
+            {{#if session.coupon}}
+              <div class="order-col">
+                <div><strong>Mã giảm giá</strong></div>
+                <div><strong
+                    class="order-total"
+                    style="font-size: 15px"
+                  >{{session.coupon.mota}}</strong></div>
+              </div>
+            {{/if}}
+            <div class="order-col">
+              <div><strong>Tổng thanh toán</strong></div>
+              <div><strong class="order-total" style="font-size: 20px">{{number
+                    this.totalPrice
+                  }}
+                  đ</strong></div>
+            </div>
+          </div>
+          <div class="payment-method">
+            <div class="input-radio">
+              <input
+                type="radio"
+                name="hinhthuctt"
+                value="Thanh toán khi nhận hàng"
+                id="payment-1"
+              />
+              <label for="payment-1">
+                <span></span>
+                Thanh toán khi nhận hàng
+              </label>
+              <div class="caption">
+              </div>
+            </div>
+            <div class="input-radio">
+              <input type="radio" name="payment" id="payment-2" disabled />
+              <label for="payment-2">
+                <span></span>
+                Thẻ ghi nợ nội địa
+              </label>
+              <div class="caption">
+              </div>
+            </div>
+            <div class="input-radio">
+              <input type="radio" name="payment" id="payment-3" disabled />
+              <label for="payment-3">
+                <span></span>
+                Paypal
+              </label>
+              <div class="caption">
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="primary-btn order-submit"
+            style="width: 100%;"
+          >ĐẶT HÀNG</button>
+        </div>
+        <!-- /Order Details -->
+      </div>
+    </form>
+    <div class="row" style="color: black; font-weight:500">
+      <div class="col-md-7">
+        <div class="form-group">
+          <div class="input-checkbox">
+            <input type="checkbox" id="create-account" />
+            <label for="create-account">
+              <span></span>
+              Thêm địa chỉ mới
+            </label>
+            <div class="caption">
+              <form action="/user/them-dia-chi" method="POST">
+                <div class="row">
+                  <div class="col-md-9">
+                    <input
+                      class="input"
+                      type="text"
+                      name="diachimoi"
+                      placeholder="Nhập địa chỉ giao hàng mới"
+                    />
+                  </div>
+                  <div class="col-md-3">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      style="width: 100%;"
+                    >Thêm mới</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->

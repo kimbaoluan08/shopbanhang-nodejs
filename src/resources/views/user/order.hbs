@@ -1,0 +1,87 @@
+<style>
+  .vertical-menu { width: 200px;} .vertical-menu a { background-color: #eee; border: 1px solid #000;
+  color: black; display: block; padding: 12px; text-decoration: none; }
+  .vertical-menu a:hover { background-color: #ccc; } .vertical-menu a.active {
+  background-color: #04AA6D; color: white; }
+</style>
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Trang chủ</a></li>
+          <li class="active">Đơn hàng của tôi</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- ASIDE -->
+      {{! <div id="aside" class="col-md-2">
+      </div> }}
+      <!-- /ASIDE -->
+
+      <!-- STORE -->
+      <div class="col-md-3">
+        <div class="vertical-menu">
+          <a href="/user/info">Thông tin cá nhân</a>
+          <a href="/user/change-pass">Đổi mật khẩu</a>
+          <a href="/user/don-hang">Đơn hàng</a>
+        </div>
+      </div>
+      <div class="col-md-9" style="font-size: 16px">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Khách hàng</th>
+              <th scope="col">Tổng tiền</th>
+              <th scope="col">Ngày đặt</th>
+              <th scope="col">Trạng thái</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each order}}
+              <tr style="padding: 4px 4px;">
+                <th scope="row">{{incremented @index}}</th>
+                <td>{{this.tenkh}}</td>
+                <td>{{number this.tongtien}} đ</td>
+                <td>{{dateFormat this.createdAt "dddd, DD-MM-YYYY HH:mm"}}</td>
+                <td>
+                  {{#ifCond this.tinhtrang 1}}
+                    <span style="color: rgb(86, 86, 209);">Đang xác nhận</span>
+                  {{/ifCond}}
+                  {{#ifCond this.tinhtrang 2}}
+                    <span style="color: rgb(48, 167, 48);">Đã xác nhận</span>
+                  {{/ifCond}}
+                  {{#ifCond this.tinhtrang 5}}
+                    <span style="color: red;">Đã huỷ</span>
+                  {{/ifCond}}
+                </td>
+                <td>
+                    <a href="/user/xem-don-hang/{{this.madh}}">
+                      Xem chi tiết</a>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      <div style="margin-bottom: 200px"></div>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>

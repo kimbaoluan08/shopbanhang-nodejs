@@ -1,0 +1,94 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{title}} </title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/back-end/images/favicon.png">
+    <link
+      type="text/css"
+      href="/back-end/vendor/pg-calendar/css/pignose.calendar.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/back-end/vendor/chartist/css/chartist.min.css"
+      rel="stylesheet"
+    />
+    <link href="/back-end/css/style.css" rel="stylesheet" />
+     <!-- Datatable -->
+    <link href="/back-end/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+
+  <body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+      {{> header-admin}}
+
+          {{{body}}}
+
+      {{> footer-admin}}
+
+    </div>
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="/back-end/vendor/global/global.min.js"></script>
+    <script src="/back-end/js/quixnav-init.js"></script>
+    <script src="/back-end/js/custom.min.js"></script>
+    <script src="/back-end/vendor/moment/moment.min.js"></script>
+    <script src="/back-end/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/back-end/js/plugins-init/datatables.init.js"></script>
+    
+    <script>
+  $(document).ready(function() {
+        $('button[name="delete-contact"]').on('click', function(e) {
+            var $form = $(this).closest('form');
+            e.preventDefault();
+            $('#delete-confirm').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                })
+                .one('click', '#delete', function() {
+                    $form.trigger('submit');
+                });
+        });
+  });
+  </script>
+  
+{{!-- <script>
+  $.ajax({
+    url: '/admin/order?page=2',
+    type: 'GET'
+  })
+  .then(data=>{
+    console.log(data)
+  })
+  .catch(err=>{
+    console.log('API loi')
+  })
+</script> --}}
+    <!-- Circle progress -->
+  </body>
+
+</html>

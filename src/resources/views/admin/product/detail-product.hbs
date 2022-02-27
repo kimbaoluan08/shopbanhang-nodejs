@@ -1,0 +1,192 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="card">
+    <div class="card-body">
+    <div class="row">
+      {{#ifCond product.maloai 1}}
+        <div style="padding: 10px 10px;">
+            <a href="/admin/product/add-detail-laptop/{{product.masp}}"><button type="submit" class="btn btn-primary">Thêm chi tiết</button></a>
+        </div>
+      {{/ifCond}}
+      {{#ifCond product.maloai 2}}
+        <div style="padding: 10px 10px;">
+            <a href="/admin/product/add-detail-dt/{{product.masp}}"><button type="submit" class="btn btn-primary">Thêm chi tiết</button></a>
+        </div>
+      {{/ifCond}}
+      {{#ifCond product.maloai 3}}
+        <div style="padding: 10px 10px;">
+            <a href="/admin/product/add-detail-pk/{{product.masp}}"><button type="submit" class="btn btn-primary">Thêm chi tiết</button></a>
+        </div>
+      {{/ifCond}}
+      </div>
+    <div class="row">
+      <div class="col-md-3">
+          <div class="card-body">
+            <img src="{{product.hinhanh}}" alt="" width="200px" height="auto" />
+          </div>
+      </div>
+      <div class="col-md-5">
+          <div class="card-body" style="color: #4d4d4d; font-size: 15px">
+            <p class="card-text">Tên sản phẩm: {{product.tensp}}</p>
+            <p class="card-text">Giá gốc: {{number product.giaban}} VNĐ</p>
+            <p class="card-text">Giá bán: {{number product.giagoc}} VNĐ</p>
+            <p class="card-text">Số lượng: {{product.soluong}}</p>
+            <p class="card-text">Trạng thái: 
+                {{#ifCond product.trangthai 1}}
+                        <span
+                          class="badge badge-success"
+                          style="color: white;"
+                        >Hiển thị</span>
+                      {{else}}
+                        <span class="badge badge-danger">Ẩn</span>
+                {{/ifCond}}
+            </p>
+            <p class="card-text">Danh mục: 
+                {{#each cate}}
+                {{#ifCond ../product.maloai this.madanhmuc }}
+                    {{this.tendanhmuc}}
+                {{/ifCond}}
+                {{/each}}
+            </p>
+            <p class="card-text">Thương hiệu:
+                {{#each brand}}
+                {{#ifCond ../product.math this.mathuonghieu }}
+                    {{this.tenth}}
+                {{/ifCond}}
+                {{/each}}
+            </p>
+            <p class="card-text">Ngày tạo: {{dateFormat product.createdAt "dddd, DD-MM-YYYY HH:mm"}}</p>
+            <p class="card-text">Ngày cập nhật: {{dateFormat product.updatedAt "dddd, DD-MM-YYYY HH:mm"}}</p>
+          </div>
+      </div>
+       <div class="col-md-4">
+         <div class="card-body" style="color: #4d4d4d;">
+           <p>Thông số kỹ thuật: </p> 
+           <br>
+           {{#ifCond product.maloai 1}}
+           <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              style="color: #4d4d4d; width: 100%"
+              
+            >
+              <thead style="text-align: left;font-size: 14px;">
+                <tr>
+                  <th>CPU</th>
+                  <td>{{laptop.cpu}}</td>
+                </tr>
+                <tr>
+                  <th>RAM</th>
+                  <td>{{laptop.ram}}</td>
+                </tr>
+                <tr>
+                  <th>Màn hình</th>
+                  <td>{{laptop.manhinh}}</td>
+                </tr>
+                <tr>
+                  <th>Ổ cứng</th>
+                  <td>{{laptop.ocung}}</td>
+                </tr>
+                <tr>
+                  <th>Hệ điều hành</th>
+                  <td>{{laptop.hdh}}</td>
+                </tr>
+                <tr>
+                  <th>Xuất xứ</th>
+                  <td>{{laptop.xuatxu}}</td>
+                </tr>
+                <tr>
+                  <th>Năm SX</th>
+                  <td>{{laptop.namsx}}</td>
+                </tr>
+              </thead>
+            </table>
+         </div>
+         {{/ifCond}}
+         {{#ifCond product.maloai 2}}
+           <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              style="color: #4d4d4d; width: 100%"
+              
+            >
+              <thead style="text-align: left;font-size: 14px;">
+                <tr>
+                  <tr>
+                  <th>Màn hình</th>
+                  <td>{{phone.manhinh}}</td>
+                </tr>
+                  <th>Camera</th>
+                  <td>{{phone.camera}}</td>
+                </tr>
+                <tr>
+                  <th>RAM</th>
+                  <td>{{phone.ram}}</td>
+                </tr>
+                <tr>
+                  <th>Bộ nhớ trong</th>
+                  <td>{{phone.rom}}</td>
+                </tr>
+                <tr>
+                  <th>Dung lượng pin</th>
+                  <td>{{phone.pin}}</td>
+                </tr>
+                <tr>
+                  <th>Hệ điều hành</th>
+                  <td>{{phone.hdh}}</td>
+                </tr>
+                <tr>
+                  <th>Xuất xứ</th>
+                  <td>{{phone.xuatxu}}</td>
+                </tr>
+                <tr>
+                  <th>Năm SX</th>
+                  <td>{{phone.namsx}}</td>
+                </tr>
+              </thead>
+            </table>
+         </div>
+         {{/ifCond}}
+       </div>
+      </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+           <div class="card">
+             {{!-- <p class="card-text" style="color: #4d4d4d; font-size: 20px; margin: 20px 20px;">Geally sản phẩm</p> --}}
+              {{#if image}}
+              <div class="row">
+                {{#each image}}
+             <div class="col-md-4">
+                <div class="thumbnail">                                   
+                  <img class="w-100" src="{{this.hinhanh}}" alt="Lights">                                 
+              </div> 
+             </div> 
+             {{/each}}
+              </div>
+             {{else}} 
+             <div style="margin: 20px 20px;">
+             <form  method="post"
+                action="/admin/product/store-img/{{product.masp}}"
+                enctype="multipart/form-data">
+                <div class="form-group">
+                  <label>Hình ảnh sản phẩm</label>
+                  <input type="file" name="hinhanh" class="input-group input-file" multiple/>
+                </div>
+                <button
+                  type="submit"
+                  value="upload"
+                  class="btn btn-primary"
+                >Thêm ảnh sản phẩm</button>
+             </form>
+             </div>
+             {{/if}}                        
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

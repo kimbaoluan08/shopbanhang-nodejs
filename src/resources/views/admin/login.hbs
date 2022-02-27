@@ -1,0 +1,43 @@
+
+<body class="h-100">
+    <div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <h4 class="text-center mb-4">Đăng nhập trang quản trị</h4>
+                                    <form action="/admin/checklogin" method="POST">
+                                        <div class="form-group">
+                                            <label><strong>Tài khoản</strong></label>
+                                            <input type="text" class="form-control" name="taikhoan">
+                                        </div>
+                                        <div class="form-group">
+                                            <label><strong>Mật khẩu</strong></label>
+                                            <input type="password" class="form-control" name="matkhau">
+                                        </div>
+                                        {{!-- <div class="form-row d-flex justify-content-between mt-4 mb-2">
+                                            <div class="form-group">
+                                                <div class="form-check ml-2">
+                                                    <input class="form-check-input" type="checkbox" id="basic_checkbox_1">
+                                                    <label class="form-check-label" for="basic_checkbox_1">Remember me</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <a href="page-forgot-password.html">Forgot Password?</a>
+                                            </div>
+                                        </div> --}}
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,62 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-title text-center pt-5">
+            <h4>THÊM NHÂN VIÊN</h4>
+          </div>
+          <div class="card-body">
+            <div class="basic-form">
+              <form method="post" action="/admin/store-user">
+                <div class="form-group">
+                  <label>Họ tên</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tên nhân viên"
+                    id="tenth"
+                    name="hoten"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Tên đăng nhập</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tên đăng nhập"
+                    id="tenth"
+                    name="taikhoan"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Mật khẩu</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Nhập mật khẩu"
+                    id="tenth"
+                    name="matkhau"
+                    required
+                  />
+                </div>
+                 <div class="form-group">
+                  <label for="exampleFormControlSelect1">Quyền</label>
+                  <select class="form-control" id="exampleFormControlSelect1" name="maquyen">
+                        <option disabled selected>-Chọn quyền-</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Nhân viên nhập sản phẩm</option>
+                        <option value="3">Nhân viên duyệt</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Thêm nhân viên</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

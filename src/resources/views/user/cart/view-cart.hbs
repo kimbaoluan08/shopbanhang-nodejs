@@ -1,0 +1,152 @@
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Trang chủ</a></li>
+          <li class="active">Giỏ hàng</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+  {{#if products}}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Giá tiền</th>
+                {{! <th scope="col">Thao tác</th> }}
+                <th scope="col">Xoá sản phẩm</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each products}}
+                <tr style="color: black; font-size: 15px">
+                  <td><img
+                      src="{{this.item.hinhanh}}"
+                      alt=""
+                      width="100px"
+                    /></td>
+                  <td style="width: 300px;">{{this.item.tensp}}</td>
+                  <td>     
+                    <form action="/update/{{this.item.masp}}" method="post">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <input
+                            type="text"
+                            class="form-control text-center"
+                            name="soluong"
+                            value="{{this.qty}}"
+                            style="width: 50px;"
+                          />
+                        </div>
+                        <div class="col-md-1" style="margin-left: 5px;">
+                          <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>{{number this.price}} đ</td>
+                  <td><a href="/remove/{{this.item.masp}}">Xoá</a></td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          <div style="font-size: 18px; font-weight: bold;">
+            Tổng:
+            {{number totalPrice}}
+            VNĐ
+          </div>
+          <br />
+          {{#if session.coupon}}
+            <div class="row" style="font-size: 18px; font-weight: bold;">
+              <div class="col-md-9">{{session.coupon.mota}}</div>
+              <div class="col-md-3" style="color: red;"><a href="/del-coupon">Xoá</a></div>
+            </div>
+          {{/if}}
+        </div>
+        <div class="col-md-3">
+          <h3>Mã giảm giá</h3>
+          <form action="/check-coupon" method="post">
+            <div class="row">
+              <div class="col-md-9">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="magg"
+                  placeholder="Nhập mã giảm giá"
+                />
+              </div>
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Áp dụng</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-sm-6">
+          <a href="/"><button type="button" class="btn btn-light">Tiếp tục mua
+              hàng</button></a>
+        </div>
+        <div class="col-sm-6">
+          {{#if session.user}}
+            <a href="/user/thanh-toan"><button
+                type="button"
+                class="btn btn-danger"
+              >Thanh toán</button></a>
+          {{else}}
+            <a href="/user/login"><button
+                type="button"
+                class="btn btn-danger"
+              >Thanh toán</button></a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div style="margin-bottom: 200px"></div>
+  {{else}}
+    <div class="container">
+      Bạn chưa có sản phẩm nào trong giỏ hàng! <a href="/"> Trang chủ</a>
+    </div>
+    <div style="margin-bottom: 200px"></div>
+  {{/if}}
+</div>
+<!-- /SECTION -->
+{{#if message.error}}
+<script>
+Swal.fire({
+  icon: 'error',
+  title: 'Không thể cập nhật giỏ hàng',
+  text: 'Vui lòng chọn số lượng nhỏ hơn hoặc bằng ' + {{message.soluong}},
+  width: '400px',
+})
+</script>
+{{/if}}
+
+{{#if message.error_1}}
+<script>
+Swal.fire({
+  icon: 'error',
+  title: 'Không thể thêm vào giỏ hàng',
+  text: 'Vui lòng chọn số lượng lớn hơn 0',
+  width: '400px',
+})
+</script>
+{{/if}}

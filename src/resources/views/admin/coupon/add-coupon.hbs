@@ -1,0 +1,58 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-title text-center pt-5">
+            <h4>THÊM MÃ GIẢM GIÁ</h4>
+          </div>
+          <div class="card-body">
+            <div class="basic-form">
+              <form method="post" action="/admin/store-coupon">
+                <div class="form-group">
+                  <label>Tên mã</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tên mã"
+                    name="tenma"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Mô tả</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập mô tả"
+                    name="mota"
+                    required
+                  />
+                </div>
+                 <div class="form-group">
+                  <label for="exampleFormControlSelect1">Hình thức giảm</label>
+                  <select class="form-control" id="exampleFormControlSelect1" name="hinhthuc">
+                        <option disabled selected>Chọn</option>
+                        <option value="1">Giảm bình thường</option>
+                        <option value="2">Giảm theo %</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Mức giảm</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập mức giảm"
+                    name="mucgiam"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Thêm mã</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

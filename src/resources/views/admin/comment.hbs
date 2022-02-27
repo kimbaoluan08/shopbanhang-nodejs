@@ -1,0 +1,128 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="col">
+      <div class="card">
+        <div class="card-title text-center pt-5">
+          <h4>BÌNH LUẬN & ĐÁNH GIÁ</h4>
+
+        </div>
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table
+              class="table table-bordered text-center"
+              style="color: #4d4d4d"
+            >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tên khách hàng</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Nội dung</th>
+                  <th>Đánh giá</th>
+                  <th>Trạng thái</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each comment}}
+                  <tr>
+                    <th scope="row">{{incremented @index}}</th>
+                    <td>{{this.tenkh}}</td>
+                    <td>
+                      {{#each product}}
+                        {{this.tensp}}
+                      {{/each}}
+                    </td>
+                    <td>
+                      {{this.noidung}}
+                    </td>
+                    <td>{{this.danhgia}} sao</td>
+                    <td>
+                      {{#ifCond this.tinhtrang 1}}
+                        <span
+                          class="badge badge-success"
+                          style="color: white;"
+                        >Đã duyệt</span>
+                      {{else}}
+                        <span class="badge badge-danger">Chưa duyệt</span>
+                      {{/ifCond}}
+                    </td>
+                    <td>
+                      {{#ifCond this.tinhtrang 1}}
+                        <a
+                          href="/admin/comment/un-active/{{this.mabl}}"
+                          class="btn btn-xs btn-warning"
+                        >
+                          <i alt="Edit" class="fa fa-pencil"> Bỏ duyệt</i></a>
+                      {{else}}
+                        <a
+                          href="/admin/comment/active/{{this.mabl}}"
+                          class="btn btn-xs btn-warning"
+                        >
+                          <i alt="Edit" class="fa fa-pencil"> Duyệt</i></a>
+                      {{/ifCond}}
+                      <form
+                        class="delete"
+                        action="/admin/del-commnet/{{this._id}}?_method=DELETE"
+                        method="POST"
+                        style="display: inline;"
+                      >
+                        <button
+                          type="submit"
+                          class="btn btn-xs btn-danger"
+                          name="delete-contact"
+                        >
+                          <i alt="Delete" class="fa fa-trash"> Xoá</i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            {{! Alert }}
+            <div id="delete-confirm" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Thông báo</h4>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                    >&times;</button>
+                  </div>
+                  <div class="modal-body">Bạn có chắc muốn xoá bình luận này?</div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      data-dismiss="modal"
+                      class="btn btn-danger"
+                      id="delete"
+                    >Xoá</button>
+                    <button
+                      type="button"
+                      data-dismiss="modal"
+                      class="btn btn-default"
+                    >Huỷ bỏ</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{#if message.success}}
+  <script>
+    Swal.fire( 'Duyệt thành công', 'Bình luận đã được duyệt', 'success' )
+  </script>
+{{/if}}
+{{#if message.success_1}}
+  <script>
+    Swal.fire( 'Bỏ duyệt thành công', 'Bình luận đã được bỏ duyệt', 'success' )
+  </script>
+{{/if}}

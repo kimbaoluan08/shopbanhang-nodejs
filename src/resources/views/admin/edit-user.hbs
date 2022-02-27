@@ -1,0 +1,54 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-title text-center pt-5">
+            <h4>THAY ĐỔI THÔNG TIN NHÂN VIÊN</h4>
+          </div>
+          <div class="card-body">
+            <div class="basic-form">
+              <form method="post" action="/admin/update-user/{{user._id}}">
+                <div class="form-group">
+                  <label>Họ tên</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="{{user.hoten}}"
+                    name="hoten"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Quyền</label>
+                  <select class="form-control" id="exampleFormControlSelect1" name="maquyen">
+                    {{#each role}}
+                      {{#ifCond ../user.maquyen this.idquyen }}
+                        <option value="{{this.idquyen}}" selected>{{this.tenquyen}}</option>
+                        {{else}}
+                        <option value="{{this.idquyen}}" >{{this.tenquyen}}</option>
+                      {{/ifCond}}
+                    {{/each}} 
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Trạng thái</label>
+                  <select class="form-control" id="exampleFormControlSelect1" name="tinhtrang">
+                    {{#ifCond user.tinhtrang 1}}
+                    <option  selected value="{{user.tinhtrang}}">Đang sử dụng</option>
+                    <option  value="0">Khoá</option>
+                    {{else}}
+                    <option  selected value="0">Khoá</option>
+                    <option  value="1">Đang sử dụng</option>
+                    {{/ifCond}}
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

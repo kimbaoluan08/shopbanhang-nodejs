@@ -1,0 +1,556 @@
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  {{#each product}}
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Trang chủ</a></li>
+            {{#ifCond this.maloai 1}}
+            <li><a href="#">Laptop</a></li>
+            {{/ifCond}}
+            {{#ifCond this.maloai 2}}
+            <li><a href="#">Điện thoại</a></li>
+            {{/ifCond}}
+            {{#ifCond this.maloai 3}}
+            <li><a href="#">Phụ kiện</a></li>
+            {{/ifCond}}
+          <li class="active">{{this.tensp}}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- Product main img -->
+      <div class="col-md-5 col-md-push-2">
+        <div id="product-main-img">
+          <div class="product-preview">
+            <img src="{{this.hinhanh}}" alt="" />
+          </div>
+          {{#each image}}
+          <div class="product-preview">
+            <img src="{{this.hinhanh}}" alt="" />
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <!-- /Product main img -->
+
+      <!-- Product thumb imgs -->
+      <div class="col-md-2 col-md-pull-5">
+        <div id="product-imgs">
+          <div class="product-preview">
+            <img src="{{this.hinhanh}}" alt="" />
+          </div>
+          {{#each image}}
+          <div class="product-preview">
+            <img src="{{this.hinhanh}}" alt="" />
+          </div>
+          {{/each}}
+          
+        </div>
+      </div>
+      <!-- /Product thumb imgs -->
+
+      <!-- Product details -->
+      <div class="col-md-5">
+        <div class="product-details">
+          <h2 class="product-name">{{this.tensp}}</h2>
+          <div>
+            <h3 class="product-price">{{number this.giaban}}
+              VNĐ
+              <del class="product-old-price">{{number this.giagoc}}
+                VNĐ</del></h3>
+            <span class="product-available">Còn hàng</span>
+          </div>
+          <hr />
+          <form action="/them-gio-hang/{{this.masp}}" method="post">
+            <div class="row">
+              <div class="col-md-2">
+                <input
+                  type="text"
+                  class="form-control text-center"
+                  name="soluong"
+                  value="1"
+                  style="width: 60px;"
+                  required
+                />
+              </div>
+              <div class="col-md-5">
+                <div class="add-to-cart">
+                  <button type="submit" class="add-to-cart-btn"><i
+                      class="fa fa-shopping-cart"
+                    ></i>
+                    Mua ngay</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <ul class="product-btns">
+            <li><a href="#"><i
+                  class="fa fa-heart-o"
+                  style="font-size: 16px;"
+                ></i>
+                yêu thích</a></li>
+          </ul>
+
+          <ul class="product-links">
+            <li>Danh mục:</li>
+            {{#ifCond this.maloai 1}}
+            <li><a href="#">Laptop</a></li>
+            {{/ifCond}}
+            {{#ifCond this.maloai 2}}
+            <li><a href="#">Điện thoại</a></li>
+            {{/ifCond}}
+            {{#ifCond this.maloai 3}}
+            <li><a href="#">Phụ kiện</a></li>
+            {{/ifCond}}
+          </ul>
+
+          <ul class="product-links">
+            <li>Chia sẻ:</li>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- /Product details -->
+
+      <!-- Product tab -->
+      <div class="col-md-12">
+        <div id="product-tab">
+          <!-- product tab nav -->
+          <ul class="tab-nav">
+            <li class="active"><a data-toggle="tab" href="#tab1">Mô tả chi tiết</a></li>
+            <li><a data-toggle="tab" href="#tab3">Bình luận</a></li>
+          </ul>
+          <!-- /product tab nav -->
+
+          <!-- product tab content -->
+          <div class="tab-content">
+            <!-- tab1  -->
+            <div id="tab1" class="tab-pane fade in active">
+              <div class="row">
+                <div class="col-md-8">
+                  {{this.mota}}
+                </div>
+                <div class="col-md-4">
+                   <p>Thông số kỹ thuật: </p> 
+           <br>
+              {{#ifCond this.maloai 1}}
+           <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              style="color: #4d4d4d; width: 100%"
+              
+            >
+            {{#each laptop}}
+              <thead style="text-align: left;font-size: 14px;">
+                <tr>
+                  <th>CPU</th>
+                  <td>{{this.cpu}}</td>
+                </tr>
+                <tr>
+                  <th>RAM</th>
+                  <td>{{this.ram}}</td>
+                </tr>
+                <tr>
+                  <th>Màn hình</th>
+                  <td>{{this.manhinh}}</td>
+                </tr>
+                <tr>
+                  <th>Ổ cứng</th>
+                  <td>{{this.ocung}}</td>
+                </tr>
+                <tr>
+                  <th>Hệ điều hành</th>
+                  <td>{{this.hdh}}</td>
+                </tr>
+                <tr>
+                  <th>Xuất xứ</th>
+                  <td>{{this.xuatxu}}</td>
+                </tr>
+                <tr>
+                  <th>Năm SX</th>
+                  <td>{{this.namsx}}</td>
+                </tr>
+              </thead>
+              {{/each}}
+            </table>
+         </div>
+         {{/ifCond}}
+         {{#ifCond this.maloai 2}}
+           <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              style="color: #4d4d4d; width: 100%"
+              
+            >
+            {{#each phone}}
+              <thead style="text-align: left;font-size: 14px;">
+                <tr>
+                  <tr>
+                  <th>Màn hình</th>
+                  <td>{{this.manhinh}}</td>
+                </tr>
+                  <th>Camera</th>
+                  <td>{{this.camera}}</td>
+                </tr>
+                <tr>
+                  <th>RAM</th>
+                  <td>{{this.ram}}</td>
+                </tr>
+                <tr>
+                  <th>Bộ nhớ trong</th>
+                  <td>{{this.rom}}</td>
+                </tr>
+                <tr>
+                  <th>Dung lượng pin</th>
+                  <td>{{this.pin}}</td>
+                </tr>
+                <tr>
+                  <th>Hệ điều hành</th>
+                  <td>{{this.hdh}}</td>
+                </tr>
+                <tr>
+                  <th>Xuất xứ</th>
+                  <td>{{this.xuatxu}}</td>
+                </tr>
+                <tr>
+                  <th>Năm SX</th>
+                  <td>{{this.namsx}}</td>
+                </tr>
+              </thead>
+              {{/each}}
+            </table>
+         </div>
+         {{/ifCond}}
+                </div>
+              </div>
+            </div>
+            <!-- /tab1  -->
+
+            <!-- tab2  -->
+            <div id="tab2" class="tab-pane fade in">
+              <div class="row">
+                <div class="col-md-12">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <!-- /tab2  -->
+
+            <!-- tab3  -->
+            <div id="tab3" class="tab-pane fade in">
+              <div class="row">
+                <!-- Rating -->
+                {{!-- <div class="col-md-3">
+                  <div id="rating">
+                    <div class="rating-avg">
+                      <span>4.5</span>
+                      <div class="rating-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                      </div>
+                    </div>
+                    <ul class="rating">
+                      <li>
+                        <div class="rating-stars">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </div>
+                        <div class="rating-progress">
+                          <div style="width: 80%;"></div>
+                        </div>
+                        <span class="sum">3</span>
+                      </li>
+                      <li>
+                        <div class="rating-stars">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                          <div style="width: 60%;"></div>
+                        </div>
+                        <span class="sum">2</span>
+                      </li>
+                      <li>
+                        <div class="rating-stars">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                          <div></div>
+                        </div>
+                        <span class="sum">0</span>
+                      </li>
+                      <li>
+                        <div class="rating-stars">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                          <div></div>
+                        </div>
+                        <span class="sum">0</span>
+                      </li>
+                      <li>
+                        <div class="rating-stars">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <div class="rating-progress">
+                          <div></div>
+                        </div>
+                        <span class="sum">0</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div> --}}
+                <!-- /Rating -->
+
+                <!-- Reviews -->
+                <div class="col-md-7">
+                  <div id="reviews">
+                    <ul class="reviews">
+                      {{#each comment}}
+                      {{#ifCond this.tinhtrang 1}}
+                      <li>
+                        <div class="review-heading">
+                          <h5 class="name">{{this.tenkh}}</h5>
+                          <p class="date">{{dateFormat
+                        this.createdAt
+                        "DD-MM-YYYY HH:mm"
+                      }}</p>
+                          {{#ifCond this.danhgia 1}}
+                          <div class="review-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o empty"></i>
+                            <i class="fa fa-star-o empty"></i>
+                            <i class="fa fa-star-o empty"></i>
+                            <i class="fa fa-star-o empty"></i>
+                          </div>
+                          {{/ifCond}}
+                          {{#ifCond this.danhgia 2}}
+                          <div class="review-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o empty"></i>
+                            <i class="fa fa-star-o empty"></i>
+                            <i class="fa fa-star-o empty"></i>
+                          </div>
+                          {{/ifCond}}
+                          {{#ifCond this.danhgia 3}}
+                          <div class="review-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o empty"></i>
+                            <i class="fa fa-star-o empty"></i>
+                          </div>
+                          {{/ifCond}}
+                          {{#ifCond this.danhgia 4}}
+                          <div class="review-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o empty"></i>
+                          </div>
+                          {{/ifCond}}
+                          {{#ifCond this.danhgia 5}}
+                          <div class="review-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                          </div>
+                          {{/ifCond}}
+                        </div>
+                        <div class="review-body">
+                          <p>{{this.noidung}}</p>
+                        </div>
+                      </li>
+                   
+                      {{else}}
+                      <div style="padding: 50px 50px;">
+                        Sản phẩm chưa có bình luận nào
+                      </div>
+                      {{/ifCond}}
+                      
+                      {{/each}}
+                     </ul>
+                  </div>
+                </div>
+                <!-- /Reviews -->
+
+                <!-- Review Form -->
+                <div class="col-md-5">
+
+                  {{#if ../session.user}}
+                    <div id="review-form">
+                      <form class="review-form" action="/user/gui-binh-luan/{{this.masp}}" method="post">
+                        <textarea
+                          class="input"
+                          name="noidung"
+                          placeholder="Bình luận sản phẩm"
+                        ></textarea>
+                        <div class="input-rating">
+                          <span>Đánh giá: </span>
+                          <div class="stars">
+                            <input
+                              id="star5"
+                              name="rating"
+                              value="5"
+                              type="radio"
+                            /><label for="star5"></label>
+                            <input
+                              id="star4"
+                              name="rating"
+                              value="4"
+                              type="radio"
+                            /><label for="star4"></label>
+                            <input
+                              id="star3"
+                              name="rating"
+                              value="3"
+                              type="radio"
+                            /><label for="star3"></label>
+                            <input
+                              id="star2"
+                              name="rating"
+                              value="2"
+                              type="radio"
+                            /><label for="star2"></label>
+                            <input
+                              id="star1"
+                              name="rating"
+                              value="1"
+                              type="radio"
+                            /><label for="star1"></label>
+                          </div>
+                        </div>
+                        <button type="submit" class="primary-btn">Gửi bình luận</button>
+                      </form>
+                    </div>
+                  {{else}}
+                    <div style="padding: 50px 50px;">Vui lòng
+                      <a href="/user/login">Đăng nhập</a>
+                      để bình luận</div>
+                  {{/if}}
+                </div>
+                <!-- /Review Form -->
+              </div>
+            </div>
+            <!-- /tab3  -->
+          </div>
+          <!-- /product tab content  -->
+        </div>
+      </div>
+      <!-- /product tab -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+{{/each}}
+<!-- Section -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="section-title text-center">
+          <h3 class="title">Sản phẩm tương tự</h3>
+        </div>
+      </div>
+
+      <!-- product -->
+      {{#each sp}}
+      <div class="col-md-3 col-xs-6">
+        <div class="product">
+          <div class="product-img">
+            <img src="{{this.hinhanh}}" alt="" />
+            <div class="product-label">
+              <span class="sale">Hot</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <p class="product-category"><a
+                        href="/lap-top/{{this.slugsp}}"
+                      >{{this.tensp}}</a></p>
+            <h4 class="product-price">{{number this.giaban}} Đ
+              <del class="product-old-price">{{number this.giagoc}} Đ</del></h4>
+            <div class="product-rating">
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      <!-- /product -->
+      <div class="clearfix visible-sm visible-xs"></div>
+
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /Section -->
+{{#if message.error}}
+<script>
+Swal.fire({
+  icon: 'error',
+  title: 'Không thể thêm vào giỏ hàng',
+  text: 'Vui lòng chọn số lượng nhỏ hơn hoặc bằng ' + {{message.soluong}},
+  width: '400px',
+})
+</script>
+{{/if}}
+{{#if message.error_1}}
+<script>
+Swal.fire({
+  icon: 'error',
+  title: 'Không thể thêm vào giỏ hàng',
+  text: 'Vui lòng chọn số lượng lớn hơn 0',
+  width: '400px',
+})
+</script>
+{{/if}}

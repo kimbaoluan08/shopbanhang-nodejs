@@ -1,0 +1,109 @@
+<div class="content-body">
+  <div class="container-fluid">
+    {{#each order}}
+    <div class="col">
+      <div class="card">
+        {{#ifCond this.tinhtrang 1}}
+        <div style="padding: 10px 10px;">
+            <a href="/admin/order/{{this.madh}}"><button type="submit" value="upload" class="btn btn-primary">Xác nhận đơn hàng</button></a>
+        </div>
+        {{/ifCond}}
+        <div class="card-title text-center pt-5">
+          <h4>THÔNG TIN ĐƠN HÀNG </h4>
+        </div>
+        <div class="card-body">
+          <div class="row" style="color: #4d4d4d; font-size: 16px">
+            <div class="col-md-6">
+               <p class="card-text">Mã đơn hàng: {{this.madh}}</p>
+               <p class="card-text">Tên khách hàng: {{this.tenkh}}</p>
+               <p class="card-text">Địa chỉ: 
+                   {{#each address}}
+                   {{this.diachi}}
+                   {{/each}}
+                   </p>
+               <p class="card-text">Số điện thoại: {{this.sdt}}</p>
+               <p class="card-text">Email: {{this.email}}</p>
+               
+               
+            </div>
+            <div class="col-md-6">
+              <p class="card-text">Ghi chú: {{this.ghichu}}</p>
+              <p class="card-text">Tổng tiền: {{number this.tongtien}} VNĐ</p>
+              <p class="card-text">Hình thức: {{this.hinhthuctt}}</p>
+              <p class="card-text">Tình trạng: 
+                      {{#ifCond this.tinhtrang 1}}
+                        <span
+                          style="color: rgb(86, 86, 209);"
+                        >Chưa xác nhận</span>
+                      {{/ifCond}}
+                      {{#ifCond this.tinhtrang 2}}
+                        <span
+                          style="color: rgb(48, 167, 48);"
+                        >Đã xác nhận</span>
+                      {{/ifCond}}
+                      {{#ifCond this.tinhtrang 5}}
+                        <span
+                          style="color: red;"
+                        >Đã huỷ</span>
+                      {{/ifCond}}
+                      {{#ifCond this.tinhtrang 3}}
+                        <span
+                          class="badge badge-primary"
+                          style="color: white;"
+                        >Đã giao hàng</span>
+                      {{/ifCond}}
+              </p>
+              <p class="card-text">Ngày đặt: {{dateFormat this.createdAt "dddd, DD-MM-YYYY HH:mm"}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-title text-center pt-5">
+          <h4>CHI TIẾT ĐƠN HÀNG </h4>
+        </div>
+        {{#each order}}
+        <div class="card-body">
+          <div class="row" style="color: #4d4d4d; font-size: 16px">
+            <div class="col">
+               <div class="table-responsive">
+            <table class="table table-bordered text-center"
+              style="color: #4d4d4d">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Hình ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá tiền</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each orderdetail}}
+                  <tr>
+                    <th scope="row">{{incremented @index}}</th>
+                    <td style="color: #4d4d4d;"><img src="{{this.hinhanh}}" width="250px"></td>
+                    <td style="color: #4d4d4d;">{{this.tensp}}</td>
+                    <td style="color: #4d4d4d;">{{this.soluong}}</td>
+                    <td style="color: #4d4d4d;">{{number this.giatien}} VNĐ</td>
+                  </tr>
+                </tbody>
+                {{/each}}
+              </table>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{#if message.success}}
+  <script>
+    Swal.fire( 'Duyệt thành công', 'Đơn hàng đã được duyệt', 'success' )
+  </script>
+{{/if}}

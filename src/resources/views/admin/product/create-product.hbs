@@ -1,0 +1,125 @@
+{{!-- <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script> --}}
+
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-title text-center pt-5">
+            <h4>THÊM SẢN PHẦM</h4>
+          </div>
+          <div class="card-body">
+            <div class="basic-form">
+              <form
+                method="post"
+                action="/admin/product/store"
+                enctype="multipart/form-data"
+              >
+                <div class="form-group">
+                  <label>Tên sản phẩm</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập tên sản phẩm"
+                    id="tenth"
+                    name="tensp"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Hình ảnh sản phẩm</label>
+                  <input
+                    type="file"
+                    name="anhchinh"
+                    class="input-group input-file"
+                  />
+                </div>
+                {{! <div class="form-group">
+                  <label>Hình ảnh sản phẩm</label>
+                  <input type="file" name="hinhanh" class="input-group input-file" multiple/>
+                </div> }}
+                <div class="form-group">
+                  <label>Giá gốc</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập giá gốc"
+                    id="tenth"
+                    name="giagoc"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Giá bán</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập giá bán"
+                    id="tenth"
+                    name="giaban"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Số lượng</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nhập số lượng"
+                    id="tenth"
+                    name="soluong"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Mô tả sản phẩm</label>
+                  <textarea name="mota" id="editor1" rows="10" cols="80">
+                    
+                  </textarea>
+                  <script>
+                    CKEDITOR.replace( 'editor1' );
+                  </script>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Danh mục</label>
+                  <select
+                    class="form-control"
+                    id="exampleFormControlSelect1"
+                    name="maloai"
+                  >
+                    <option disabled selected>-Chọn danh mục-</option>
+                    {{#each cate}}
+                      <option
+                        value="{{this.madanhmuc}}"
+                      >{{this.tendanhmuc}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Thương hiệu</label>
+                  <select
+                    class="form-control"
+                    id="exampleFormControlSelect1"
+                    name="math"
+                  >
+                    <option disabled selected>-Chọn danh mục-</option>
+                    {{#each brand}}
+                      <option
+                        value="{{this.mathuonghieu}}"
+                      >{{this.tenth}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  value="upload"
+                  class="btn btn-primary"
+                >Thêm sản phẩm</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

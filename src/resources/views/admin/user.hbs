@@ -1,0 +1,141 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="col">
+      <div class="card">
+        <div class="card-title text-center pt-5">
+          <h4>DANH SÁCH NHÂN VIÊN </h4>
+
+        </div>
+        <div class="card-body"><a href="/admin/add-user"><button
+              type="button"
+              class="btn btn-primary"
+            >Thêm nhân viên</button></a></div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered text-center"
+              style="color: #4d4d4d"
+            >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tên nhân viên</th>
+                  <th>Tên quyền</th>
+                  <th>Trạng thái</th>
+                  <th>Ngày tạo</th>
+                  <th>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each user}}
+                  <tr>
+                    <th scope="row">{{incremented @index}}</th>
+                    <td>{{this.hoten}}</td>
+                    <td>
+                      {{#ifCond this.maquyen 1}}
+                        Admin
+                      {{/ifCond}}
+                      {{#ifCond this.maquyen 2}}
+                        Nhân viên nhập sản phẩm
+                      {{/ifCond}}
+                      {{#ifCond this.maquyen 3}}
+                        Nhân viên duyệt đơn
+                      {{/ifCond}}
+                    </td>
+                    <td>
+                      {{#ifCond this.tinhtrang 1}}
+                        <span
+                          class="badge badge-success"
+                          style="color: white;"
+                        >Đang sử dụng</span>
+                      {{else}}
+                        <span class="badge badge-danger">Khoá</span>
+                      {{/ifCond}}
+                    </td>
+                    <td>{{dateFormat this.createdAt "dddd, DD-MM-YYYY HH:mm"}}</td>
+                    <td><a
+                        href="/admin/{{this._id}}/edit-user"
+                        class="btn btn-xs btn-warning"
+                      >
+                        <i alt="Edit" class="fa fa-pencil"> Thay đổi</i></a>
+                      <form
+                        class="delete"
+                        action="/admin/del-user/{{this._id}}?_method=DELETE"
+                        method="POST"
+                        style="display: inline;"
+                      >
+                        <button
+                          type="submit"
+                          class="btn btn-xs btn-danger"
+                          name="delete-contact"
+                        >
+                          <i alt="Delete" class="fa fa-trash"> Xoá</i>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            {{! Alert }}
+            <div id="delete-confirm" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Thông báo</h4>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                    >&times;</button>
+                  </div>
+                  <div class="modal-body">Bạn có chắc muốn xoá nhân viên này?</div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      data-dismiss="modal"
+                      class="btn btn-danger"
+                      id="delete"
+                    >Xoá</button>
+                    <button
+                      type="button"
+                      data-dismiss="modal"
+                      class="btn btn-default"
+                    >Huỷ bỏ</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{#if message.success}}
+  <script>
+  Swal.fire(
+     'Thành công',
+     'Nhân viên đã được cập nhật',
+     'success'
+  )
+  </script>
+{{/if}}
+{{#if message.delete}}
+  <script>
+  Swal.fire(
+     'Thành công',
+     'Nhân viên đã được xoá',
+     'success'
+  )
+  </script>
+{{/if}}
+{{#if message.add}}
+  <script>
+  Swal.fire(
+     'Thành công',
+     'Nhân viên đã thêm thành công',
+     'success'
+  )
+  </script>
+{{/if}}

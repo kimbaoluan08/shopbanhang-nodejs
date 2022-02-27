@@ -1,0 +1,78 @@
+<div class="content-body">
+  <div class="container-fluid">
+    <div class="col">
+      <div class="card">
+        <div class="card-title text-center pt-5">
+          <h4>DANH SÁCH ĐƠN HÀNG </h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered text-center"
+              style="color: #4d4d4d">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Tên khách hàng</th>
+                    <th>Thanh toán</th>
+                    <th>Ngày đặt</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each order}}
+                  <tr>
+                    <th scope="row">{{incremented @index}}</th>
+                    <td style="color: #4d4d4d;">{{this.tenkh}}</td>
+                    <td style="color: #4d4d4d;">{{number this.tongtien}} đ</td>
+                    <td style="color: #4d4d4d;">{{dateFormat this.createdAt "dddd, DD-MM-YYYY HH:mm"}}</td>
+                    <td>
+                      {{#ifCond this.tinhtrang 1}}
+                        <span
+                          style="color: rgb(86, 86, 209);"
+                        >Chưa xác nhận</span>
+                      {{/ifCond}}
+                      {{#ifCond this.tinhtrang 2}}
+                        <span
+                          style="color: rgb(48, 167, 48);"
+                        >Đã xác nhận</span>
+                      {{/ifCond}}
+                      {{#ifCond this.tinhtrang 5}}
+                        <span
+                          style="color: red;"
+                        >Đã huỷ</span>
+                      {{/ifCond}}
+                      {{#ifCond this.tinhtrang 3}}
+                        <span
+                          class="badge badge-primary"
+                          style="color: white;"
+                        >Đã giao hàng</span>
+                      {{/ifCond}}
+
+                    </td>
+                    <td>
+                        <a
+                          href="/admin/view-order/{{this.madh}}"
+                          class="btn btn-xs btn-warning"
+                        >
+                          Xem chi tiết</a>
+                    </td>
+                  </tr>
+                </tbody>
+                {{/each}}
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{#if message.success}}
+  <script>
+  Swal.fire(
+     'Duyệt thành công',
+     'Đơn hàng đã được duyệt',
+     'success'
+  )
+  </script>
+{{/if}}
